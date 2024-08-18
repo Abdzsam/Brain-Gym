@@ -1,13 +1,11 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         hashMap = {}
-        for i in range(len(nums)):
-            hashMap[f"{nums[i]}"] = nums[i]
-
-        if(len(hashMap) < len(nums)):
-            return True
-        else:
-            return False
+        for num in nums:
+            if num in hashMap:
+                return True
+            hashMap[num] = num
+        return False
 
 
         
