@@ -8,8 +8,9 @@ class Solution:
             else:
                 majority[nums[i]] = 1
 
-        for num, count in majority.items():
-            if count > len(nums)/2:
-                return num
+            if majority[nums[i]] > len(nums)/2:
+                return nums[i]
+
+        
 
             
