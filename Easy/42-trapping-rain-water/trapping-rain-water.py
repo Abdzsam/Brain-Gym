@@ -3,8 +3,10 @@ class Solution:
         if not height:
             return 0
 
-        l, r = 0, len(height) - 1
-        leftMax, rightMax = height[l], height[r]
+        l = 0
+        r = len(height) - 1
+        leftMax = height[l]
+        rightMax = height[r]
         trap = 0
 
         while l < r:
@@ -13,11 +15,12 @@ class Solution:
                 leftMax = max(leftMax, height[l])
                 trap += leftMax - height[l]
             else:
-                r-= 1
+                r -= 1
                 rightMax = max(rightMax, height[r])
-                trap += rightMax -height[r]
+                trap += rightMax - height[r]
 
         return trap
+
 
              
         
