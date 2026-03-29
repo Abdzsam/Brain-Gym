@@ -1,67 +1,32 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+
         lowMin = 0
-        highMin = len(nums) - 1
-        resMin = 0
+        highMin = n - 1
 
         while lowMin <= highMin:
             mid = (lowMin + highMin) // 2
 
-            if len(nums) == 2:
-                if nums[0] < nums[1]:
-                    resMin = 0
-                    break
-                else:
-                    resMin = 1
-                    break
-
-            if len(nums) == 1:
-                resMin = 0
-                break
-
-            if mid == len(nums) - 1:
-                resMin = len(nums) - 1
-                break
-
             if nums[mid] > nums[-1]:
                 lowMin = mid + 1
-            elif nums[mid] < nums[-1]:
+            else:
                 highMin = mid - 1
 
-            resMin = lowMin
-
-        sNum1 = nums[resMin:len(nums)]
-        sNum2 = nums[0:resMin]
-        sNumF = sNum1 + sNum2
+        resMin = lowMin
 
         low = 0
-        high = len(sNumF) - 1
-        resF = 0
+        high = n - 1
 
         while low <= high:
             mid = (low + high) // 2
+            realMid = (mid + resMin) % n
 
-            if sNumF[mid] == target:
-                resF = mid
-                break
-            elif sNumF[mid] < target:
+            if nums[realMid] == target:
+                return realMid
+            elif nums[realMid] < target:
                 low = mid + 1
             else:
                 high = mid - 1
 
-            
-        if sNumF[resF] != target:
-            return -1
-
-        if len(sNumF) == 1:
-            return 0
-
-        return (resMin + resF) % len(nums)
-        
-
-            
-        
-         
-
-            
-        
+        return -1
