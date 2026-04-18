@@ -10,7 +10,7 @@ class Solution:
             else:
                 count[s[r]] = 1
 
-            if (r - l + 1) - max(count.values()) > k:
+            while (r - l + 1) - max(count.values()) > k:
                 count[s[l]] -= 1
                 l += 1
 
